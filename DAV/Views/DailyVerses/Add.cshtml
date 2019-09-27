@@ -1,0 +1,54 @@
+﻿@using DAV.Dto
+@model DailyVerseDto
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add - Daily Verse</h2>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <section id="verseForm">
+            @using (Html.BeginForm("Add", "DailyVerses", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <p class="text-danger">
+                    @ViewBag.Message
+                </p>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.VerseDate, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.VerseDate,"{0:MM/dd/yyyy}" ,new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.VerseDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.VerseTitle, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.VerseTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.VerseTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Verse, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(m => m.Verse, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Verse, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

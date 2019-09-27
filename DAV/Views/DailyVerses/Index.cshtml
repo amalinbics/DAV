@@ -1,0 +1,52 @@
+﻿@using DAV.Dto;
+@model IEnumerable<DailyVerseDto>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("Create", "Add")
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover" width="100%">
+            <thead>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Date</b>
+                    </td>
+                    <td class="col-md-4">
+                        <b>Title</b>
+                    </td>
+                    <td class="col-md-4">
+                        <b>Verse</b>
+                    </td>
+                    <td>
+
+                    </td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(DailyVerseDto item in Model)
+                {
+                    <tr>
+                        <td class="col-md-4">
+                            @item.VerseDate.ToString("MM/dd/yyyy")
+                        </td>
+                        <td class="col-md-4">
+                            @item.VerseTitle
+                        </td>
+                        <td class="col-md-4">
+                            @item.Verse
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Add", new { id = item.Id})
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

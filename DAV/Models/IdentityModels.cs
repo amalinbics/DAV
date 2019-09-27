@@ -29,5 +29,7 @@ namespace DAV.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<DailyVerse> DailyVerses { get; set; }
     }
 }
